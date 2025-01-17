@@ -2,4 +2,8 @@ trello - https://trello.com/b/hYJSGcfi/sleepoutside
 website - https://unique-faloodeh-8f7888.netlify.app/
 
 Deana Briggs
+<<<<<<< HEAD
 Makai Maetani
+=======
+Tom Scott
+>>>>>>> fcfd9a9058f1a594b1ccb459ac0462ee9a4c6e60
