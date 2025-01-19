@@ -2,24 +2,14 @@ import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 import { findProductById } from "./productData.mjs";
 
 function addProductToCart(product) {
-  // Retrieve the cart data from local storage
-  let cart = getLocalStorage("so-cart");
+  const cart = getLocalStorage("so-cart") || []; // retrieve current cart info from local storage or make an empty list
+  const exists = cart.some((cartItem) => cartItem.Id === product.Id); // check if the product is already in the cart
 
-  if (cart) {
-    // If the cart exists and is an array, add the new product
-    if (Array.isArray(cart)) {
-      cart.push(product);
-    } else {
-      // If the cart contains a single item, convert it to an array and add the new product
-      cart = [cart, product];
-    }
-  } else {
-    // If no cart exists, create a new array with the product
-    cart = [product];
+  // if the product isn't already in the cart, add it, otherwise do nothing
+  if (!exists) {
+    cart.push(product);
+    setLocalStorage("so-cart", cart);
   }
-
-  // Save the updated cart back to local storage
-  setLocalStorage("so-cart", cart);
 }
 
 // add to cart button event handler
