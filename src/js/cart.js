@@ -7,7 +7,8 @@ function renderCartContents() {
   if (cartItems) {
     // If cartItems is a single product (not an array)
     if (!Array.isArray(cartItems)) {
-      document.querySelector(".product-list").innerHTML = cartItemTemplate(cartItems);
+      document.querySelector(".product-list").innerHTML =
+        cartItemTemplate(cartItems);
     } else {
       // If cartItems is an array, render each item using the template
       const htmlItems = cartItems.map((item) => cartItemTemplate(item));

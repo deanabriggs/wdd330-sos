@@ -15,7 +15,7 @@ function addProductToCart(product) {
     }
   } else {
     // If no cart exists, create a new array with the product
-    cart = [product]
+    cart = [product];
   }
 
   // Save the updated cart back to local storage
