@@ -1,20 +1,9 @@
 import { getLocalStorage } from "./utils.mjs";
 
 function renderCartContents() {
-  // Retrieve cart data from local storage
   const cartItems = getLocalStorage("so-cart");
-
-  if (cartItems) {
-    // If cartItems is a single product (not an array)
-    if (!Array.isArray(cartItems)) {
-      document.querySelector(".product-list").innerHTML =
-        cartItemTemplate(cartItems);
-    } else {
-      // If cartItems is an array, render each item using the template
-      const htmlItems = cartItems.map((item) => cartItemTemplate(item));
-      document.querySelector(".product-list").innerHTML = htmlItems.join("");
-    }
-  }
+  const htmlItems = cartItems.map((item) => cartItemTemplate(item));
+  document.querySelector(".product-list").innerHTML = htmlItems.join("");
 }
 
 function cartItemTemplate(item) {
