@@ -3,9 +3,8 @@ import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 function showCartTotal(products) {
   let total = 0;
   products.forEach((product) => (total += product.FinalPrice));
-  document.querySelector(".cart-footer").innerHTML = `Total: \$${total}`;
+  document.querySelector(".cart-footer").innerHTML = `Total: $${total}`;
   const cartFooterElement = document.querySelector(".cart-footer");
-  console.log(total);
   if (total > 0) {
     cartFooterElement.classList.remove("hide");
   } else {
@@ -44,4 +43,3 @@ function cartItemTemplate(item) {
 }
 
 renderCartContents();
-
