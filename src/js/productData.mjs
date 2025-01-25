@@ -1,9 +1,17 @@
+// Provides functionality to retrieve data and expose to other parts of the application
+
 function convertToJson(res) {
   if (res.ok) {
     return res.json();
   } else {
     throw new Error("Bad Response");
   }
+}
+
+// add to cart button event handler
+export async function addToCartHandler(e) {
+  const product = await findProductById(e.target.dataset.id);
+  addProductToCart(product);
 }
 
 export async function getData(category = "tents") {
