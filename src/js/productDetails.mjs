@@ -23,6 +23,13 @@ function addProductToCart(productInfo) {
   if (!exists) {
     cart.push(productInfo);
     setLocalStorage("so-cart", cart);
+
+    //Plays Bounce Animation on Cart
+    const bounceElement = document.querySelector('.bounce');
+    bounceElement.classList.add('play-bounce');
+    setTimeout(() => {
+      bounceElement.classList.remove('play-bounce');
+    }, 2000);
   }
 }
 
