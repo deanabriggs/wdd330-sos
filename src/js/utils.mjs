@@ -1,3 +1,5 @@
+import { doc } from "prettier";
+
 // wrapper for querySelector...returns matching element
 export function qs(selector, parent = document) {
   return parent.querySelector(selector);
@@ -26,4 +28,9 @@ export function getParam(param = "product") {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   return urlParams.get(param);
+}
+
+export function updateCartCountNum() {
+  let cart = JSON.parse(localStorage.getItem("so-cart")) || [];
+  const cartCount = document.querySelector(".cartCount");
 }

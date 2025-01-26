@@ -1,5 +1,5 @@
 // Responsible for all of the functionality needed to lookup data for a specific product and display it in HTML
-import { getLocalStorage, setLocalStorage, qs } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, qs, updateCart } from "./utils.mjs";
 import { findProductById } from "./productData.mjs";
 
 let product = {};
@@ -12,18 +12,18 @@ export default async function productDetails(productId) {
   // add a listener to Add to Cart button
   document
     .getElementById("addToCart")
-    .addEventListener("click", addProductToCart(product));
+    .addEventListener("click", () => addProductToCart(product));
 }
 
 function addProductToCart(productInfo) {
   const cart = getLocalStorage("so-cart") || []; // retrieve current cart info from local storage or make an empty list
   const exists = cart.some((cartItem) => cartItem.Id === productInfo.Id); // check if the product is already in the cart
-
   // if the product isn't already in the cart, add it, otherwise do nothing
   if (!exists) {
     cart.push(productInfo);
     setLocalStorage("so-cart", cart);
   }
+  updateCartCountNum(cart);
 }
 
 function renderProductDetails() {
