@@ -12,14 +12,51 @@ function showCartTotal(products) {
   }
 }
 
+function removeItemFromCart(itemId) {
+  const cartItems = getLocalStorage("so-cart");
+  // Create a new array for all items that does not have the same id
+  const updatedCart = cartItems.filter(item => item.Id !== itemId);
+
+  setLocalStorage("so-cart", updatedCart);
+  renderCartContents();
+}
+
 function renderCartContents() {
   let cartItems = getLocalStorage("so-cart");
+
+  // if cart is empty, create an array
   if (cartItems === null || cartItems === undefined) {
     setLocalStorage("so-cart", []);
     cartItems = [];
   }
-  const htmlItems = cartItems.map((item) => cartItemTemplate(item));
-  document.querySelector(".product-list").innerHTML = htmlItems.join("");
+
+  const productList = document.querySelector(".product-list");
+  productList.innerHTML = "";
+
+  cartItems.map((item) => {
+    const cartItemHTML = cartItemTemplate(item);
+
+    // Create the remove item button (X)
+    const removeButton = document.createElement("span");
+    removeButton.textContent = "Ｘ";
+    removeButton.classList.add("remove-button");
+    removeButton.setAttribute("product-id", item.Id);
+
+    // Event listener for remove item button
+    removeButton.addEventListener("click", (e) => {
+      const itemId = e.target.getAttribute("product-id");
+      removeItemFromCart(itemId);
+    });
+
+    // Wrap the item HTML and add the remove item button
+    const itemContainer = document.createElement("div");
+    itemContainer.classList.add("cart-item-container");
+    itemContainer.innerHTML = cartItemHTML;
+    itemContainer.prepend(removeButton);
+
+    productList.appendChild(itemContainer);
+  })
+
   showCartTotal(cartItems);
 }
 
