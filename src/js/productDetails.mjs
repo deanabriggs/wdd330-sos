@@ -12,7 +12,7 @@ export default async function productDetails(productId) {
   // add a listener to Add to Cart button
   document
     .getElementById("addToCart")
-    .addEventListener("click", addProductToCart(product));
+    .addEventListener("click", () => addProductToCart(product));
 }
 
 function addProductToCart(productInfo) {
@@ -23,6 +23,13 @@ function addProductToCart(productInfo) {
   if (!exists) {
     cart.push(productInfo);
     setLocalStorage("so-cart", cart);
+
+    //Plays Bounce Animation on Cart
+    const bounceElement = document.querySelector('.bounce');
+    bounceElement.classList.add('play-bounce');
+    setTimeout(() => {
+      bounceElement.classList.remove('play-bounce');
+    }, 2000);
   }
 }
 
