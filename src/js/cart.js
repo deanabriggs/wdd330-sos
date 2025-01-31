@@ -15,7 +15,7 @@ function showCartTotal(products) {
 function removeItemFromCart(itemId) {
   const cartItems = getLocalStorage("so-cart");
   // Create a new array for all items that does not have the same id
-  const updatedCart = cartItems.filter(item => item.Id !== itemId);
+  const updatedCart = cartItems.filter((item) => item.Id !== itemId);
 
   setLocalStorage("so-cart", updatedCart);
   renderCartContents();
@@ -55,7 +55,7 @@ function renderCartContents() {
     itemContainer.prepend(removeButton);
 
     productList.appendChild(itemContainer);
-  })
+  });
 
   showCartTotal(cartItems);
 }

@@ -27,3 +27,15 @@ export function getParam(param = "product") {
   const urlParams = new URLSearchParams(queryString);
   return urlParams.get(param);
 }
+
+export function renderListWithTemplate(templateFn, parentElement, list, position = "beforeend", clear = true) {
+  if (clear) {
+    while (parentElement.lastChild) {
+      parentElement.lastChild.remove();
+    }
+  }
+  list.map((item) => {
+    const templateItem = templateFn(item);
+    parentElement.insertAdjacentHTML(position, templateItem);
+  });
+}
