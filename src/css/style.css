@@ -296,6 +296,24 @@ footer {
   padding: 1em;
 }
 
+/* Add superscript number to cart if not 0 items*/
+.cart {
+  position: relative;
+}
+
+.superscript {
+  line-height: 18px;
+  width: 18px; 
+  border-radius: 50%;
+  font-size: x-small;
+  color: white;
+  background-color: rgb(184, 21, 21);
+  position: absolute;
+  top: 15px;
+  right: -8px;
+  z-index: 3;
+}
+
 /* Cart remove item button styles*/
 
 .cart-item-container {

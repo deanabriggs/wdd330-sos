@@ -1,4 +1,4 @@
-import { getLocalStorage, setLocalStorage } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, totalQuantity } from "./utils.mjs";
 
 function showCartTotal(products) {
   let total = 0;
@@ -80,3 +80,7 @@ function cartItemTemplate(item) {
 }
 
 renderCartContents();
+
+document.addEventListener("DOMContentLoaded", () => {
+  totalQuantity();
+});
