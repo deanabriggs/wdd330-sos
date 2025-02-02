@@ -1,12 +1,2 @@
 [
-  {
-    "message": "this is a test",
-    "background": "darkblue",
-    "color": "white"
-  },
-  {
-    "message": "Another test",
-    "background": "red",
-    "color": "white"
-  }
 ]
