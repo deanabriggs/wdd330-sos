@@ -28,7 +28,13 @@ export function getParam(param = "product") {
   return urlParams.get(param);
 }
 
-export function renderListWithTemplate(templateFn, parentElement, list, position = "beforeend", clear = true) {
+export function renderListWithTemplate(
+  templateFn,
+  parentElement,
+  list,
+  position = "beforeend",
+  clear = true
+) {
   if (clear) {
     while (parentElement.lastChild) {
       parentElement.lastChild.remove();
@@ -38,6 +44,16 @@ export function renderListWithTemplate(templateFn, parentElement, list, position
     const templateItem = templateFn(item);
     parentElement.insertAdjacentHTML(position, templateItem);
   });
+}
+
+export function totalQuantity() {
+  const cart = getLocalStorage("so-cart") || [];
+  if (cart.length === 0) return null;
+
+  const total = cart.reduce((sum, item) => sum + Number(item.Quantity), 0);
+  qs(".superscript").innerText = total;
+
+  return total;
 }
 
 export function inject404Page(selector) {
