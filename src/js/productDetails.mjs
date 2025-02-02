@@ -1,5 +1,10 @@
 // Responsible for all of the functionality needed to lookup data for a specific product and display it in HTML
-import { getLocalStorage, setLocalStorage, qs } from "./utils.mjs";
+import {
+  getLocalStorage,
+  setLocalStorage,
+  qs,
+  totalQuantity,
+} from "./utils.mjs";
 import { findProductById } from "./productData.mjs";
 
 let product = {};
@@ -17,20 +22,31 @@ export default async function productDetails(productId) {
 
 function addProductToCart(productInfo) {
   const cart = getLocalStorage("so-cart") || []; // retrieve current cart info from local storage or make an empty list
-  const exists = cart.some((cartItem) => cartItem.Id === productInfo.Id); // check if the product is already in the cart
+  const existingProd = cart.find((cartItem) => cartItem.Id === productInfo.Id); // check if the product is already in the cart
 
-  // if the product isn't already in the cart, add it, otherwise do nothing
-  if (!exists) {
+  // if the product already exists in the cart, increase the Quantity
+  if (existingProd) {
+    existingProd.Quantity = Number(existingProd.Quantity) + 1;
+    // If the product doesn't exist in the cart, add the item with a Quantity of 1
+  } else {
+    productInfo.Quantity = 1;
     cart.push(productInfo);
-    setLocalStorage("so-cart", cart);
-
-    //Plays Bounce Animation on Cart
-    const bounceElement = document.querySelector('.bounce');
-    bounceElement.classList.add('play-bounce');
-    setTimeout(() => {
-      bounceElement.classList.remove('play-bounce');
-    }, 2000);
   }
+
+  // Set LocalStorage with new cart values
+  setLocalStorage("so-cart", cart);
+  totalQuantity();
+
+  // should play if quantity is changed or product is added
+  playBounce();
+}
+
+function playBounce() {
+  const bounceElement = qs(".bounce");
+  bounceElement.classList.add("play-bounce");
+  setTimeout(() => {
+    bounceElement.classList.remove("play-bounce");
+  }, 2000);
 }
 
 function renderProductDetails() {
@@ -43,3 +59,7 @@ function renderProductDetails() {
   qs("#productDescHtmlSimple").innerHTML = product.DescriptionHtmlSimple;
   qs("#addToCart").dataset.id = product.Id;
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  totalQuantity();
+});

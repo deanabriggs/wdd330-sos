@@ -1,8 +1,10 @@
-import { getLocalStorage, setLocalStorage } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, totalQuantity } from "./utils.mjs";
 
 function showCartTotal(products) {
   let total = 0;
-  products.forEach((product) => (total += product.FinalPrice));
+  products.forEach(
+    (product) => (total += product.FinalPrice * product.Quantity)
+  );
   document.querySelector(".cart-footer").innerHTML = `Total: $${total}`;
   const cartFooterElement = document.querySelector(".cart-footer");
   if (total > 0) {
@@ -72,11 +74,25 @@ function cartItemTemplate(item) {
     <h2 class="card__name">${item.Name}</h2>
   </a>
   <p class="cart-card__color">${item.Colors[0].ColorName}</p>
-  <p class="cart-card__quantity">qty: 1</p>
-  <p class="cart-card__price">$${item.FinalPrice}</p>
+  <p class="cart-card__price">
+    <span class="valueDesc">Price: </span>
+    $${item.FinalPrice}
+  </p>
+  <p class="cart-card__quantity">
+    <span class="valueDesc">Quantity: </span> 
+    ${item.Quantity}
+  </p>
+  <p class="cart-card__itemTotal">
+    <span class="valueDesc">Item Subtotal: </span>
+    $${item.FinalPrice * item.Quantity}
+  </p>
 </li>`;
 
   return newItem;
 }
 
 renderCartContents();
+
+document.addEventListener("DOMContentLoaded", () => {
+  totalQuantity();
+});
