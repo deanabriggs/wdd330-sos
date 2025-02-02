@@ -39,3 +39,27 @@ export function renderListWithTemplate(templateFn, parentElement, list, position
     parentElement.insertAdjacentHTML(position, templateItem);
   });
 }
+
+export function inject404Page(selector) {
+
+  // Select the main content element to replace
+  const mainContent = document.querySelector(selector);
+
+  mainContent.innerHTML = "";
+
+  // Create 404 content
+  const section = document.createElement("section");
+  section.classList.add("error-page");
+
+  const heading = document.createElement("h1");
+  heading.textContent = "404 - Product Not Found";
+
+  const message = document.createElement("p");
+  message.textContent = "The product you are looking for does not exist or may have been removed.";
+
+  // Append 404 content
+  section.appendChild(heading);
+  section.appendChild(message);
+
+  mainContent.appendChild(section);
+}

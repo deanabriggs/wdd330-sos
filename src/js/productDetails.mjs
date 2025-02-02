@@ -1,5 +1,5 @@
 // Responsible for all of the functionality needed to lookup data for a specific product and display it in HTML
-import { getLocalStorage, setLocalStorage, qs } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, qs, inject404Page } from "./utils.mjs";
 import { findProductById } from "./productData.mjs";
 
 let product = {};
@@ -7,12 +7,18 @@ let product = {};
 export default async function productDetails(productId) {
   // use findProductById to get the details for the current product. findProductById will return a promise! use await or .then() to process it
   product = await findProductById(productId);
-  // once we have the product details we can render out the HTML
-  renderProductDetails();
-  // add a listener to Add to Cart button
-  document
-    .getElementById("addToCart")
-    .addEventListener("click", () => addProductToCart(product));
+
+  if (product) {
+    // once we have the product details we can render out the HTML
+    renderProductDetails(productId);
+    // add a listener to Add to Cart button
+    document
+      .getElementById("addToCart")
+      .addEventListener("click", () => addProductToCart(product));
+  } else {
+    // Display error page
+    inject404Page("main.divider");
+  }
 }
 
 function addProductToCart(productInfo) {
@@ -33,7 +39,7 @@ function addProductToCart(productInfo) {
   }
 }
 
-function renderProductDetails() {
+function renderProductDetails(productId) {
   qs("#productName").innerText = product.Brand.Name;
   qs("#productNameWithoutBrand").innerText = product.NameWithoutBrand;
   qs("#productImage").src = product.Image;
@@ -41,5 +47,20 @@ function renderProductDetails() {
   qs("#productFinalPrice").innerText = product.FinalPrice;
   qs("#productColorName").innerText = product.Colors[0].ColorName;
   qs("#productDescHtmlSimple").innerHTML = product.DescriptionHtmlSimple;
-  qs("#addToCart").dataset.id = product.Id;
+
+  // Create the button container
+  const buttonContainer = document.createElement("div");
+  buttonContainer.classList.add("product-detail__add");
+
+  // Create the Add to Cart button
+  const addToCartButton = document.createElement("button");
+  addToCartButton.id = "addToCart";
+  addToCartButton.dataset.id = product.Id;
+  addToCartButton.textContent = "Add to Cart";
+
+  // Append the button to the container
+  buttonContainer.appendChild(addToCartButton);
+
+  // Inject into DOM
+  document.body.appendChild(buttonContainer);
 }
