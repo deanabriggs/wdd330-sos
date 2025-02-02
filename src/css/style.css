@@ -316,3 +316,14 @@ footer {
   color: red;
   border: 1px solid red;
 }
+
+/*Suggested Price Text*/
+
+.product-card__suggested_price {
+  font-style: italic;
+}
+
+.strikethrough {
+  text-decoration: line-through;
+  color: red;
+}
