@@ -46,6 +46,51 @@ export function renderListWithTemplate(
   });
 }
 
+export async function renderWithTemplate(
+  templateFn,
+  parentElement,
+  callback, data,
+  position = "beforeend",
+  clear = true
+) {
+
+  if (clear) {
+    while (parentElement.lastChild) {
+      parentElement.lastChild.remove();
+    }
+  }
+    
+  const template = await templateFn();
+    parentElement.insertAdjacentHTML(position, template);
+    if(callback) {
+        callback(data);
+    }
+
+ 
+}
+
+export function  loadTemplate(path){
+  return async function () {
+    const res = await fetch(path);
+    if (res.ok) {
+    const html = await res.text();
+    return html;
+    }
+};
+}
+
+export async function loadHeaderFooter(){
+  const headerTemplateFn = loadTemplate("/partials/header.html");
+  const footerTemplateFn = loadTemplate("/partials/footer.html");
+  const header = document.querySelector("#mainHeader");
+  const footer = document.querySelector("#mainFooter");
+  renderWithTemplate(headerTemplateFn, header, null, null, "beforeend", false);
+  renderWithTemplate(footerTemplateFn, footer);
+}
+
+
+
+
 export function totalQuantity() {
   const cart = getLocalStorage("so-cart") || [];
   if (cart.length === 0) return null;

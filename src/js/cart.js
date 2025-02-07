@@ -1,4 +1,5 @@
-import { getLocalStorage, setLocalStorage, totalQuantity } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, totalQuantity, loadHeaderFooter } from "./utils.mjs";
+loadHeaderFooter();
 
 function showCartTotal(products) {
   let total = 0;
