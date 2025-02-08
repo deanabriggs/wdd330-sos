@@ -1,4 +1,8 @@
-import { renderListWithTemplate } from "./utils.mjs";
+import {
+  loadTemplate,
+  renderListWithTemplate,
+  renderWithTemplate,
+} from "./utils.mjs";
 
 async function fetchAlerts() {
   const response = await fetch("../json/alerts.json");
@@ -9,7 +13,7 @@ function alertTemplate(alert) {
   return `<p style="background: ${alert.background}; color: ${alert.color};">${alert.message}</p>`;
 }
 
-export default async function loadAlerts() {
+export async function loadAlerts() {
   const alerts = await fetchAlerts();
   if (alerts.length > 0) {
     const mainElement = document.querySelector("main");
@@ -18,4 +22,23 @@ export default async function loadAlerts() {
     mainElement.prepend(alertSection);
     renderListWithTemplate(alertTemplate, alertSection, alerts);
   }
+}
+
+export async function showRegisterModal() {
+  const modalFn = loadTemplate("/partials/registration-modal.html");
+  let modalElement = document.querySelector("#registrationModal");
+  await renderWithTemplate(modalFn, modalElement);
+  const modal = document.querySelector("#registrationModal");
+  const closeBtn = document.querySelector(".close");
+  const registerBtn = document.querySelector("#registerButton");
+  closeBtn.onclick = () => {
+  };
+  registerBtn.onclick = () => {
+    modalElement.classList.add("hide");
+  };
+  window.onclick = (event) => {
+    if (event.target === modal) {
+      modalElement.classList.add("hide");
+    }
+  };
 }
