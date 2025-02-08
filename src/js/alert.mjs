@@ -32,6 +32,7 @@ export async function showRegisterModal() {
   const closeBtn = document.querySelector(".close");
   const registerBtn = document.querySelector("#registerButton");
   closeBtn.onclick = () => {
+    modalElement.classList.add("hide");
   };
   registerBtn.onclick = () => {
     modalElement.classList.add("hide");
