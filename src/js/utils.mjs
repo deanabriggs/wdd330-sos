@@ -96,7 +96,7 @@ export function totalQuantity() {
   if (cart.length === 0) return null;
 
   const total = cart.reduce((sum, item) => sum + Number(item.Quantity), 0);
-  qs(".superscript").innerText = total;
+  //qs(".superscript").innerText = total;
 
   return total;
 }
