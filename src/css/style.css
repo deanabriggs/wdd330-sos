@@ -85,9 +85,18 @@ header {
   margin-top: -1.3em;
 }
 
-.logo--square > div {
+.logo--square>div {
   margin-top: -1.7em;
 }
+
+.category-container {
+  margin: auto;
+  max-width: 50%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+
 
 /* utility classes */
 .highlight {
@@ -295,6 +304,7 @@ button {
 }
 
 @keyframes bounce {
+
   0%,
   20%,
   50%,
@@ -302,9 +312,11 @@ button {
   100% {
     transform: translateY(0);
   }
+
   40% {
     transform: translateY(-20px);
   }
+
   60% {
     transform: translateY(-15px);
   }
@@ -313,6 +325,7 @@ button {
 .bounce svg {
   transition: transform 0.2s;
 }
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
@@ -341,7 +354,7 @@ footer {
 
 .superscript {
   line-height: 18px;
-  width: 18px; 
+  width: 18px;
   border-radius: 50%;
   font-size: x-small;
   color: white;
@@ -381,37 +394,37 @@ footer {
 
 /*Registration Modal*/
 .modal {
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.4);
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto;
-    padding: 15px 20px 30px;
-    border: 1px solid #888;
-    width: 80%;
-    max-width: 500px;
-    text-align: center;
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 15px 20px 30px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 500px;
+  text-align: center;
 }
 
 .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
 }
 
 .close:hover,
 .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }
