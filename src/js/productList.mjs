@@ -1,7 +1,6 @@
 import { getData } from "./productData.mjs";
 import { qs } from "./utils.mjs";
-import { renderListWithTemplate } from "./utils.mjs";
-
+import { renderListWithTemplate, totalQuantity } from "./utils.mjs";
 
 function productCardTemplate(product) {
   return `<li class="product-card">
@@ -15,11 +14,12 @@ function productCardTemplate(product) {
     <p class="product-card__suggested_price">Suggested Price: <span class="strikethrough">$${product.SuggestedRetailPrice}</span></p>
     <p class="product-card__price">Our Price: $${product.FinalPrice}</p></a
   >
-</li>`
+</li>`;
 }
 
 function renderList(selector, products) {
   let productList = qs(selector);
+  totalQuantity();
   renderListWithTemplate(productCardTemplate, productList, products);
 }
 
