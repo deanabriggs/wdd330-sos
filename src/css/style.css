@@ -85,18 +85,28 @@ header {
   margin-top: -1.3em;
 }
 
-.logo--square>div {
+.logo--square > div {
   margin-top: -1.7em;
 }
 
 .category-container {
-  margin: auto;
-  max-width: 50%;
+  padding: 0;
+  margin: 60px auto;
+  max-width: 90%;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(4, 15%);
+  gap: 8%;
+  list-style: none;
+  justify-content: center;
 }
 
+.category-container li {
+  text-align: center; 
+}
 
+.category-container h3 {
+  font-size: 2vw; 
+}
 
 /* utility classes */
 .highlight {
@@ -304,7 +314,6 @@ button {
 }
 
 @keyframes bounce {
-
   0%,
   20%,
   50%,

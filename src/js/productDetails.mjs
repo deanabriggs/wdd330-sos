@@ -62,7 +62,10 @@ function renderProductDetails(productId) {
   qs("#productNameWithoutBrand").innerText = product.NameWithoutBrand;
   qs("#productImage").src = product.Image;
   qs("#productImage").alt = product.Name;
-  qs("#productSuggestPrice").innerHTML = '<p class="product-card__suggested_price">Suggested Price: <span class="strikethrough">$' + product.SuggestedRetailPrice + '</span></p>';
+  qs("#productSuggestPrice").innerHTML =
+    '<p class="product-card__suggested_price">Suggested Price: <span class="strikethrough">$' +
+    product.SuggestedRetailPrice +
+    "</span></p>";
   qs("#productFinalPrice").innerText = "Our Price: $" + product.FinalPrice;
   qs("#productColorName").innerText = product.Colors[0].ColorName;
   qs("#productDescHtmlSimple").innerHTML = product.DescriptionHtmlSimple;
@@ -82,8 +85,5 @@ function renderProductDetails(productId) {
 
   // Inject into DOM
   document.body.appendChild(buttonContainer);
-}
-
-document.addEventListener("DOMContentLoaded", () => {
   totalQuantity();
-});
+}

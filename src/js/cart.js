@@ -1,4 +1,11 @@
-import { getLocalStorage, setLocalStorage, totalQuantity, loadHeaderFooter, renderListWithTemplate, qs } from "./utils.mjs";
+import {
+  getLocalStorage,
+  setLocalStorage,
+  totalQuantity,
+  loadHeaderFooter,
+  renderListWithTemplate,
+  qs,
+} from "./utils.mjs";
 loadHeaderFooter();
 
 function showCartTotal(products) {
@@ -93,13 +100,13 @@ function cartItemTemplate(item) {
 }
 
 function renderCartList() {
-  let cartList = qs(".product-list")
+  let cartList = qs(".product-list");
   let productList = getLocalStorage("so-cart");
-  renderListWithTemplate(cartItemTemplate,cartList, productList);
+  renderListWithTemplate(cartItemTemplate, cartList, productList);
 }
 
 renderCartList();
 
-document.addEventListener("DOMContentLoaded", () => {
+window.addEventListener("load", () => {
   totalQuantity();
 });
