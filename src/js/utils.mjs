@@ -49,37 +49,35 @@ export function renderListWithTemplate(
 export async function renderWithTemplate(
   templateFn,
   parentElement,
-  callback, data,
+  callback,
+  data,
   position = "beforeend",
   clear = true
 ) {
-
   if (clear) {
     while (parentElement.lastChild) {
       parentElement.lastChild.remove();
     }
   }
-    
-  const template = await templateFn();
-    parentElement.insertAdjacentHTML(position, template);
-    if(callback) {
-        callback(data);
-    }
 
- 
+  const template = await templateFn();
+  parentElement.insertAdjacentHTML(position, template);
+  if (callback) {
+    callback(data);
+  }
 }
 
-export function  loadTemplate(path){
+export function loadTemplate(path) {
   return async function () {
     const res = await fetch(path);
     if (res.ok) {
-    const html = await res.text();
-    return html;
+      const html = await res.text();
+      return html;
     }
-};
+  };
 }
 
-export async function loadHeaderFooter(){
+export async function loadHeaderFooter() {
   const headerTemplateFn = loadTemplate("/partials/header.html");
   const footerTemplateFn = loadTemplate("/partials/footer.html");
   const header = document.querySelector("#mainHeader");
@@ -88,21 +86,15 @@ export async function loadHeaderFooter(){
   renderWithTemplate(footerTemplateFn, footer);
 }
 
-
-
-
 export function totalQuantity() {
   const cart = getLocalStorage("so-cart") || [];
   if (cart.length === 0) return null;
-
   const total = cart.reduce((sum, item) => sum + Number(item.Quantity), 0);
   //qs(".superscript").innerText = total;
-
   return total;
 }
 
 export function inject404Page(selector) {
-
   // Select the main content element to replace
   const mainContent = document.querySelector(selector);
 
@@ -116,7 +108,8 @@ export function inject404Page(selector) {
   heading.textContent = "404 - Product Not Found";
 
   const message = document.createElement("p");
-  message.textContent = "The product you are looking for does not exist or may have been removed.";
+  message.textContent =
+    "The product you are looking for does not exist or may have been removed.";
 
   // Append 404 content
   section.appendChild(heading);
