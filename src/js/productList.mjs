@@ -6,7 +6,7 @@ function productCardTemplate(product) {
   return `<li class="product-card">
   <a href="/product_pages/index.html?product=${product.Id}">
     <img
-      src="${product.Image}"
+      src="${product.Images.PrimarySmall}"
       alt="${product.Name}"
     />
     <h3 class="card__brand">${product.Brand.Name}</h3>
@@ -19,7 +19,6 @@ function productCardTemplate(product) {
 
 function renderList(selector, products) {
   let productList = qs(selector);
-  totalQuantity();
   renderListWithTemplate(productCardTemplate, productList, products);
 }
 
