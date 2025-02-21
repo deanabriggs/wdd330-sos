@@ -1,5 +1,5 @@
 import { getData } from "./productData.mjs";
-import { qs } from "./utils.mjs";
+import { qs, renderWithTemplate } from "./utils.mjs";
 import { renderListWithTemplate, totalQuantity } from "./utils.mjs";
 
 function productCardTemplate(product) {
@@ -22,10 +22,29 @@ function renderList(selector, products) {
   renderListWithTemplate(productCardTemplate, productList, products);
 }
 
+function breadCrumbTemplate(category, productCount) {
+  return async function () {
+    const template = `<div className="breadcrumb">
+  <a href="/">${category}</a>
+  <span className="separator">-></span>
+  <span>(${productCount} items)</span>
+</div>`;
+    return template;
+  };
+}
+
+function renderBreadCrumbs(category, productCount) {
+  const templateFn = breadCrumbTemplate(category, productCount);
+  const breadcrumbContainer = document.querySelector(".breadcrumb-container");
+  renderWithTemplate(templateFn, breadcrumbContainer);
+}
+
 export default async function productList(selector, category) {
   let tentNames = [];
   let displayedProducts = [];
   const data = await getData(category);
+  const productCount = data.length;
+  renderBreadCrumbs(category, productCount);
   data.forEach((product) => {
     const cleanName = product.NameWithoutBrand.split("-")[0].trim();
     if (!tentNames.includes(cleanName)) {
