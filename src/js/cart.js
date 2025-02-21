@@ -13,7 +13,7 @@ function showCartTotal(products) {
   products.forEach(
     (product) => (total += product.FinalPrice * product.Quantity)
   );
-  document.querySelector(".cart-footer").innerHTML = `Total: $${total}`;
+  document.querySelector(".cart-total").innerHTML = `Total: $${total}`;
   const cartFooterElement = document.querySelector(".cart-footer");
   if (total > 0) {
     cartFooterElement.classList.remove("hide");
@@ -103,6 +103,7 @@ function renderCartList() {
   let cartList = qs(".product-list");
   let productList = getLocalStorage("so-cart");
   renderListWithTemplate(cartItemTemplate, cartList, productList);
+  showCartTotal(productList);
 }
 
 renderCartList();
