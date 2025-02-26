@@ -54,3 +54,7 @@ export default async function productList(selector, category) {
   });
   renderList(selector, displayedProducts);
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  totalQuantity();
+});

@@ -361,7 +361,7 @@ footer {
   position: relative;
 }
 
-.superscript {
+#superscript {
   line-height: 18px;
   width: 18px;
   border-radius: 50%;

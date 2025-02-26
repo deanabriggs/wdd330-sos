@@ -13,7 +13,9 @@ function showCartTotal(products) {
   products.forEach(
     (product) => (total += product.FinalPrice * product.Quantity)
   );
-  document.querySelector(".cart-total").innerHTML = `Total: $${total.toFixed(2)}`;
+  document.querySelector(".cart-total").innerHTML = `Total: $${total.toFixed(
+    2
+  )}`;
   const cartFooterElement = document.querySelector(".cart-footer");
   if (total > 0) {
     cartFooterElement.classList.remove("hide");
@@ -108,6 +110,6 @@ function renderCartList() {
 
 renderCartList();
 
-window.addEventListener("load", () => {
+document.addEventListener("DOMContentLoaded", () => {
   totalQuantity();
 });

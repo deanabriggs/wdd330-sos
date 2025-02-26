@@ -93,8 +93,17 @@ export async function loadHeaderFooter() {
 export function totalQuantity() {
   const cart = getLocalStorage("so-cart") || [];
   if (cart.length === 0) return null;
+
   const total = cart.reduce((sum, item) => sum + Number(item.Quantity), 0);
-  //qs(".superscript").innerText = total;
+
+  const headerCheck = setInterval(() => {
+    const superscriptElement = qs("#superscript");
+    if (superscriptElement) {
+      clearInterval(headerCheck);
+      superscriptElement.innerText = total;
+    }
+  }, 100);
+
   return total;
 }
 

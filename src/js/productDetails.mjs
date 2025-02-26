@@ -57,10 +57,10 @@ function playBounce() {
   }, 2000);
 }
 
-function renderProductDetails(productId) {
+function renderProductDetails() {
   qs("#productName").innerText = product.Brand.Name;
   qs("#productNameWithoutBrand").innerText = product.NameWithoutBrand;
-  qs("#productImage").src = product.Image;
+  qs("#productImage").src = product.Images.PrimaryLarge;
   qs("#productImage").alt = product.Name;
   qs("#productSuggestPrice").innerHTML =
     '<p class="product-card__suggested_price">Suggested Price: <span class="strikethrough">$' +
@@ -84,6 +84,6 @@ function renderProductDetails(productId) {
   buttonContainer.appendChild(addToCartButton);
 
   // Inject into DOM
-  document.body.appendChild(buttonContainer);
+  qs(".product-detail").appendChild(buttonContainer);
   totalQuantity();
 }
