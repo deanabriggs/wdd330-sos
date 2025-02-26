@@ -36,13 +36,15 @@ export function renderListWithTemplate(
   clear = true
 ) {
   if (clear) {
-    while (parentElement.lastChild) {
-      parentElement.lastChild.remove();
+    if (parentElement) {
+      parentElement.innerHTML = "";
     }
   }
   list.map((item) => {
     const templateItem = templateFn(item);
-    parentElement.insertAdjacentHTML(position, templateItem);
+    if (parentElement) {
+      parentElement.insertAdjacentHTML(position, templateItem);
+    }
   });
 }
 
@@ -55,13 +57,15 @@ export async function renderWithTemplate(
   clear = true
 ) {
   if (clear) {
-    while (parentElement.lastChild) {
-      parentElement.lastChild.remove();
+    if (parentElement) {
+      parentElement.innerHTML = "";
     }
   }
 
   const template = await templateFn();
-  parentElement.insertAdjacentHTML(position, template);
+  if (parentElement) {
+    parentElement.insertAdjacentHTML(position, template);
+  }
   if (callback) {
     callback(data);
   }
