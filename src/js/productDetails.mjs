@@ -7,7 +7,7 @@ import {
   inject404Page,
 } from "./utils.mjs";
 
-import { findProductById, findRandomProduct } from "./productData.mjs";
+import { findProductById, findRandomProduct } from "./externalServices.mjs";
 
 let product = {};
 
@@ -95,10 +95,10 @@ function calculateDiscountPercentage(suggestedPrice, storePrice) {
   return Math.round(discountPercentage * 100) / 100;
 }
 
-function renderProductDetails(productId) {
+function renderProductDetails() {
   qs("#productName").innerText = product.Brand.Name;
   qs("#productNameWithoutBrand").innerText = product.NameWithoutBrand;
-  qs("#productImage").src = product.Image;
+  qs("#productImage").src = product.Images.PrimaryLarge;
   qs("#productImage").alt = product.Name;
   if(product.FinalPrice < product.SuggestedRetailPrice){
     var discount = "Discount -" + calculateDiscountPercentage(product.SuggestedRetailPrice, product.FinalPrice) + "% OFF";
@@ -126,7 +126,7 @@ function renderProductDetails(productId) {
   buttonContainer.appendChild(addToCartButton);
 
   // Inject into DOM
-  document.body.appendChild(buttonContainer);
+  qs(".product-detail").appendChild(buttonContainer);
   totalQuantity();
 }
 

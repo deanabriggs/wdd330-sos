@@ -36,13 +36,15 @@ export function renderListWithTemplate(
   clear = true
 ) {
   if (clear) {
-    while (parentElement.lastChild) {
-      parentElement.lastChild.remove();
+    if (parentElement) {
+      parentElement.innerHTML = "";
     }
   }
   list.map((item) => {
     const templateItem = templateFn(item);
-    parentElement.insertAdjacentHTML(position, templateItem);
+    if (parentElement) {
+      parentElement.insertAdjacentHTML(position, templateItem);
+    }
   });
 }
 
@@ -55,13 +57,15 @@ export async function renderWithTemplate(
   clear = true
 ) {
   if (clear) {
-    while (parentElement.lastChild) {
-      parentElement.lastChild.remove();
+    if (parentElement) {
+      parentElement.innerHTML = "";
     }
   }
 
   const template = await templateFn();
-  parentElement.insertAdjacentHTML(position, template);
+  if (parentElement) {
+    parentElement.insertAdjacentHTML(position, template);
+  }
   if (callback) {
     callback(data);
   }
@@ -89,8 +93,17 @@ export async function loadHeaderFooter() {
 export function totalQuantity() {
   const cart = getLocalStorage("so-cart") || [];
   if (cart.length === 0) return null;
+
   const total = cart.reduce((sum, item) => sum + Number(item.Quantity), 0);
-  //qs(".superscript").innerText = total;
+
+  const headerCheck = setInterval(() => {
+    const superscriptElement = qs("#superscript");
+    if (superscriptElement) {
+      clearInterval(headerCheck);
+      superscriptElement.innerText = total;
+    }
+  }, 100);
+
   return total;
 }
 

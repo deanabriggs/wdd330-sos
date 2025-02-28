@@ -1,4 +1,4 @@
-import { getData } from "./productData.mjs";
+import { getProductsByCategory } from "./externalServices.mjs";
 import { qs, renderWithTemplate } from "./utils.mjs";
 import { renderListWithTemplate, totalQuantity } from "./utils.mjs";
 
@@ -42,7 +42,7 @@ function renderBreadCrumbs(category, productCount) {
 export default async function productList(selector, category) {
   let tentNames = [];
   let displayedProducts = [];
-  const data = await getData(category);
+  const data = await getProductsByCategory(category);
   const productCount = data.length;
   renderBreadCrumbs(category, productCount);
   data.forEach((product) => {
@@ -54,3 +54,7 @@ export default async function productList(selector, category) {
   });
   renderList(selector, displayedProducts);
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  totalQuantity();
+});
