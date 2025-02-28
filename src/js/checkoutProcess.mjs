@@ -1,4 +1,4 @@
-import { getLocalStorage, qs } from "./utils.mjs";
+import { getLocalStorage, qs, setLocalStorage } from "./utils.mjs";
 import { checkout } from "./externalServices.mjs";
 
 // Converts form data to JSON format
@@ -88,6 +88,7 @@ const checkoutProcess = {
 
   // Handles the checkout process and sends order data
   checkout: async function (form) {
+    console.log("");
     // set "checkout" as KEY, use function to create VALUE
     const json = formDataToJSON(form); // formats form data to JSON
     json.orderDate = new Date(); // adds orderDate to the JSON
@@ -99,8 +100,15 @@ const checkoutProcess = {
     try {
       const res = await checkout(json); // attempt to populate "checkout" using the json form data
       console.log(res); // display results to the console
+      setLocalStorage("so-cart", []);
+      location.assign("/checkout/success.html");
     } catch (err) {
       // catch any errors
+      
+      removeAllAlerts();
+      for(let message in err.message) {
+        alertMessage(err.message[message]);
+      }
       console.log(err); // display errors to the console
     }
   },

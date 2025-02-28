@@ -52,3 +52,11 @@ export async function checkout(payload) {
     return convertToJson(data);
   });
 }
+
+// async function convertToJson(res) {
+//   if (res.ok) {
+//     return res.json();
+//   } else {
+//     throw { name: 'servicesError', message: jsonResponse };
+//   }
+// }
