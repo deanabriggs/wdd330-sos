@@ -29,3 +29,11 @@ export async function findProductById(id) {
 
   return data.Result;
 }
+
+export async function findRandomProduct(prodId) {
+  const response = await fetch(baseURL + `product/${prodId}`);
+  const data = await convertToJson(response);
+
+  return data.Result;
+}
+
