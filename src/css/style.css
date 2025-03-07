@@ -470,9 +470,11 @@ footer {
 .checkout-form {
   padding: 0.5em;
 }
+
 .checkout-form label {
   display: block;
 }
+
 .checkout-form input {
   width: 100%;
   font-size: 1.2em;
@@ -482,11 +484,13 @@ footer {
   padding-left: 0;
   list-style-type: none;
 }
+
 .checkout-summary li {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+
 .checkout-summary input {
   width: 25%;
   font-size: 1em;
@@ -547,10 +551,10 @@ input[type="radio"]:checked::before {
 
 .recProd {
   height: 600px;
-  margin: 0 auto; 
-  display: grid; 
+  margin: 0 auto;
+  display: grid;
   align-items: center;
-  justify-content: center; 
+  justify-content: center;
   grid-template-rows: 500px 100px;
   grid-template-columns: 1fr 30px 30px 30px 30px 30px 1fr;
 }
@@ -588,18 +592,22 @@ div.item:nth-of-type(1) {
   --offset: 1;
   background-color: #fcac00;
 }
+
 div.item:nth-of-type(2) {
   --offset: 2;
   background-color: #ff70a6;
 }
+
 div.item:nth-of-type(3) {
   --offset: 3;
   background-color: #ff9770;
 }
+
 div.item:nth-of-type(4) {
   --offset: 4;
   background-color: #ffd670;
 }
+
 div.item:nth-of-type(5) {
   --offset: 5;
   background-color: #e9ff70;
@@ -609,6 +617,7 @@ input:nth-of-type(1) {
   grid-column: 2 / 3;
   grid-row: 2 / 3;
 }
+
 input:nth-of-type(1):checked ~ main#carousel {
   --position: 1;
 }
@@ -617,6 +626,7 @@ input:nth-of-type(2) {
   grid-column: 3 / 4;
   grid-row: 2 / 3;
 }
+
 input:nth-of-type(2):checked ~ main#carousel {
   --position: 2;
 }
@@ -625,6 +635,7 @@ input:nth-of-type(3) {
   grid-column: 4 /5;
   grid-row: 2 / 3;
 }
+
 input:nth-of-type(3):checked ~ main#carousel {
   --position: 3;
 }
@@ -633,6 +644,7 @@ input:nth-of-type(4) {
   grid-column: 5 / 6;
   grid-row: 2 / 3;
 }
+
 input:nth-of-type(4):checked ~ main#carousel {
   --position: 4;
 }
@@ -641,11 +653,13 @@ input:nth-of-type(5) {
   grid-column: 6 / 7;
   grid-row: 2 / 3;
 }
+
 input:nth-of-type(5):checked ~ main#carousel {
   --position: 5;
 }
 
-.recBuy {padding: 0.6em 2em;
+.recBuy {
+  padding: 0.6em 2em;
   border: none;
   outline: none;
   color: rgb(255, 255, 255);
@@ -656,4 +670,33 @@ input:nth-of-type(5):checked ~ main#carousel {
   border-radius: 10px;
   user-select: none;
   -webkit-user-select: none;
-  touch-action: manipulation;}
+  touch-action: manipulation;
+}
+
+.loginForm {
+  max-width: 300px;
+  margin: 50px;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #218838;
+}
