@@ -6,24 +6,25 @@
     <title>Sleep Outside | Home</title>
     <link rel="stylesheet" href="/css/style.css" />
 
-    <script src="../js/login.js" type="module"></script>
+    <script src="../js/orders.js" type="module"></script>
   </head>
   <body>
-    <header class="divider" id="mainHeader"></header>
+    <header class="divider" id="main-header"></header>
     <main class="divider">
-      <div class="container">
-        <h2>User Login</h2>
-        <form id="loginForm" name="loginForm">
-          <label for="email">Email:</label>
-          <input type="text" id="email" name="email" required />
+      <h2>Current Orders</h2>
+      <table id="orders">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Date</th>
+            <th>#Items</th>
+            <th>Total</th>
+          </tr>
+        </thead>
 
-          <label for="password">Password:</label>
-          <input type="password" id="password" name="password" required />
-
-          <button id="loginButton" type="submit">Login</button>
-        </form>
-      </div>
+        <tbody class="order-body"></tbody>
+      </table>
     </main>
-    <footer id="mainFooter"></footer>
+    <footer id="main-footer"></footer>
   </body>
 </html>

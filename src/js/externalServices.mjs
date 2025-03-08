@@ -29,14 +29,12 @@ export async function findProductById(id) {
   return data.Result;
 }
 
-
 export async function findRandomProduct(prodId) {
   const response = await fetch(baseURL + `product/${prodId}`);
   const data = await convertToJson(response);
 
   return data.Result;
 }
-
 
 export async function checkout(payload) {
   const options = {
@@ -51,4 +49,29 @@ export async function checkout(payload) {
     console.log(data);
     return convertToJson(data);
   });
+}
+
+export async function loginRequest(user) {
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: user,
+  };
+  const url = `${baseURL}login`;
+  const response = await fetch(url, options).then(convertToJson);
+  console.log("loginResponse", response);
+  return response.accessToken;
+}
+
+export async function getOrders(token) {
+  const options = {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const url = `${baseURL}orders`;
+  return await fetch(url, options).then(convertToJson);
 }
