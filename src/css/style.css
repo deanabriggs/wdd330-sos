@@ -572,10 +572,10 @@ input[type="radio"]:checked::before {
 
 .recProd {
   height: 600px;
-  margin: 0 auto; 
-  display: grid; 
+  margin: 0 auto;
+  display: grid;
   align-items: center;
-  justify-content: center; 
+  justify-content: center;
   grid-template-rows: 500px 100px;
   grid-template-columns: 1fr 30px 30px 30px 30px 30px 1fr;
 }
@@ -670,7 +670,8 @@ input:nth-of-type(5):checked ~ main#carousel {
   --position: 5;
 }
 
-.recBuy {padding: 0.6em 2em;
+.recBuy {
+  padding: 0.6em 2em;
   border: none;
   outline: none;
   color: rgb(255, 255, 255);
@@ -681,4 +682,5 @@ input:nth-of-type(5):checked ~ main#carousel {
   border-radius: 10px;
   user-select: none;
   -webkit-user-select: none;
-  touch-action: manipulation;}
+  touch-action: manipulation;
+}
