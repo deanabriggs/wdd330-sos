@@ -51,6 +51,15 @@ export async function checkout(payload) {
   });
 }
 
+
+// async function convertToJson(res) {
+//   if (res.ok) {
+//     return res.json();
+//   } else {
+//     throw { name: 'servicesError', message: jsonResponse };
+//   }
+// }
+
 export async function loginRequest(user) {
   const options = {
     method: "POST",
