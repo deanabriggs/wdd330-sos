@@ -17,13 +17,8 @@ function getRandomStringFromArray(array) {
   const randomIndex = Math.floor(Math.random() * array.length);
   return array[randomIndex];
 }
-let recProducts = [
-  "880RR",
-  "989CG",
-  "985PR",
-  "880RT",
-  "344YJ"
-];
+
+let recProducts = ["880RR", "989CG", "985PR", "880RT", "344YJ"];
 let randomProduct1 = {};
 let randomProduct2 = {};
 let randomProduct3 = {};
@@ -40,7 +35,7 @@ export default async function productDetails(productId) {
   if (product) {
     // once we have the product details we can render out the HTML
     renderProductDetails(productId);
-   
+
     //Random Products
     renderRandomProduct();
     // add a listener to Add to Cart button
@@ -82,15 +77,14 @@ function playBounce() {
   }, 2000);
 }
 
-function calculateDiscountPercentage(suggestedPrice, storePrice) {
-    
+export function calculateDiscountPercentage(suggestedPrice, storePrice) {
   if (suggestedPrice <= storePrice) {
-      return 0; 
+    return 0;
   }
 
-  var discountAmount = suggestedPrice - storePrice;
+  let discountAmount = suggestedPrice - storePrice;
 
-  var discountPercentage = (discountAmount / suggestedPrice) * 100;
+  let discountPercentage = (discountAmount / suggestedPrice) * 100;
 
   return Math.round(discountPercentage * 100) / 100;
 }
@@ -100,9 +94,18 @@ function renderProductDetails() {
   qs("#productNameWithoutBrand").innerText = product.NameWithoutBrand;
   qs("#productImage").src = product.Images.PrimaryLarge;
   qs("#productImage").alt = product.Name;
-  if(product.FinalPrice < product.SuggestedRetailPrice){
-    var discount = "Discount -" + calculateDiscountPercentage(product.SuggestedRetailPrice, product.FinalPrice) + "% OFF";
-    qs("#productDiscount").innerHTML = '<span class="flag-discount" id="productDiscount">' + discount + '</span>';
+  if (product.FinalPrice < product.SuggestedRetailPrice) {
+    var discount =
+      "Discount -" +
+      calculateDiscountPercentage(
+        product.SuggestedRetailPrice,
+        product.FinalPrice
+      ) +
+      "% OFF";
+    qs("#productDiscount").innerHTML =
+      '<span class="flag-discount" id="productDiscount">' +
+      discount +
+      "</span>";
   }
   qs("#productSuggestPrice").innerHTML =
     '<p class="product-card__suggested_price">Suggested Price: <span class="strikethrough">$' +
@@ -136,17 +139,26 @@ function renderRandomProduct() {
   qs("#productImage1").src = randomProduct1.Image;
   qs("#productImage1").alt = randomProduct1.Name;
   qs("#productFinalPrice1").innerText = "$" + randomProduct1.FinalPrice;
-  qs("#productLink1").innerHTML = '<a class="recBuy" href="/product_pages/index.html?product=' + randomProduct1.Id + '">Buy Now</a>';
+  qs("#productLink1").innerHTML =
+    '<a class="recBuy" href="/product_pages/index.html?product=' +
+    randomProduct1.Id +
+    '">Buy Now</a>';
 
   qs("#productNameWithoutBrand2").innerText = randomProduct2.NameWithoutBrand;
   qs("#productImage2").src = randomProduct2.Image;
   qs("#productImage2").alt = randomProduct2.Name;
   qs("#productFinalPrice2").innerText = "$" + randomProduct2.FinalPrice;
-  qs("#productLink2").innerHTML = '<a class="recBuy" href="/product_pages/index.html?product=' + randomProduct2.Id + '">Buy Now</a>';
+  qs("#productLink2").innerHTML =
+    '<a class="recBuy" href="/product_pages/index.html?product=' +
+    randomProduct2.Id +
+    '">Buy Now</a>';
 
   qs("#productNameWithoutBrand3").innerText = randomProduct3.NameWithoutBrand;
   qs("#productImage3").src = randomProduct3.Image;
   qs("#productImage3").alt = randomProduct3.Name;
   qs("#productFinalPrice3").innerText = "$" + randomProduct3.FinalPrice;
-  qs("#productLink3").innerHTML = '<a class="recBuy" href="/product_pages/index.html?product=' + randomProduct3.Id + '">Buy Now</a>';
+  qs("#productLink3").innerHTML =
+    '<a class="recBuy" href="/product_pages/index.html?product=' +
+    randomProduct3.Id +
+    '">Buy Now</a>';
 }
