@@ -1,18 +1,5 @@
-import { getLocalStorage, qs } from "./utils.mjs";
+import { formDataToJSON, getLocalStorage, qs } from "./utils.mjs";
 import { checkout } from "./externalServices.mjs";
-
-// Converts form data to JSON format
-function formDataToJSON(formElement) {
-  const formData = new FormData(formElement), // Create a FormData object form the form
-    convertedJSON = {}; // Empty object to store key-value pairs
-
-  formData.forEach(function (value, key) {
-    // Loop through form data entries
-    convertedJSON[key] = value; // assign key-value pairs to JSON object
-  });
-
-  return convertedJSON; // Return formatted JSON object
-}
 
 // Creates simplified list of items with relevant details
 function packageItems(items) {
