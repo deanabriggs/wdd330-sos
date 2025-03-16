@@ -13,6 +13,10 @@ export function getLocalStorage(key) {
 export function setLocalStorage(key, data) {
   localStorage.setItem(key, JSON.stringify(data));
 }
+
+export function removeLocalStorage(key) {
+  localStorage.removeItem(key);
+}
 // set a listener for both touchend and click
 export function setClick(selector, callback) {
   qs(selector).addEventListener("touchend", (event) => {
@@ -129,4 +133,17 @@ export function inject404Page(selector) {
   section.appendChild(message);
 
   mainContent.appendChild(section);
+}
+
+// Converts form data to JSON format
+export function formDataToJSON(formElement) {
+  const formData = new FormData(formElement), // Create a FormData object form the form
+    convertedJSON = {}; // Empty object to store key-value pairs
+
+  formData.forEach(function(value, key) {
+    // Loop through form data entries
+    convertedJSON[key] = value; // assign key-value pairs to JSON object
+  });
+
+  return convertedJSON; // Return formatted JSON object
 }
