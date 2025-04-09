@@ -5,6 +5,7 @@ import {
   loadHeaderFooter,
   renderListWithTemplate,
   qs,
+  formatCurrency,
 } from "./utils.mjs";
 loadHeaderFooter();
 
@@ -13,11 +14,7 @@ function showCartTotal(products) {
   products.forEach(
     (product) => (total += product.FinalPrice * product.Quantity)
   );
-
-  const formattedPrice = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD'
-  }).format(total);
+  const formattedPrice = formatCurrency(total);
 
   document.querySelector(".cart-total").innerHTML = `Total: ${formattedPrice}`;
   const cartFooterElement = document.querySelector(".cart-footer");
@@ -77,16 +74,8 @@ function renderCartContents() {
 }
 
 function cartItemTemplate(item) {
-  const formattedPrice = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD'
-  }).format(item.FinalPrice);
-
-  const formattedSubtotal = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD'
-  }).format(item.FinalPrice * item.Quantity);
-
+  const formattedPrice = formatCurrency(item.FinalPrice);
+  const formattedSubtotal = formatCurrency(item.FinalPrice * item.Quantity);
   const newItem = `<li class="cart-card divider">
     <a href="#" class="cart-card__image">
       <img
