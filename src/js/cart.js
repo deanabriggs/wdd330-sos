@@ -13,9 +13,13 @@ function showCartTotal(products) {
   products.forEach(
     (product) => (total += product.FinalPrice * product.Quantity)
   );
-  document.querySelector(".cart-total").innerHTML = `Total: $${total.toFixed(
-    2
-  )}`;
+
+  const formattedPrice = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD'
+  }).format(total);
+
+  document.querySelector(".cart-total").innerHTML = `Total: ${formattedPrice}`;
   const cartFooterElement = document.querySelector(".cart-footer");
   if (total > 0) {
     cartFooterElement.classList.remove("hide");
@@ -73,30 +77,41 @@ function renderCartContents() {
 }
 
 function cartItemTemplate(item) {
+  const formattedPrice = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD'
+  }).format(item.FinalPrice);
+
+  const formattedSubtotal = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD'
+  }).format(item.FinalPrice * item.Quantity);
+
   const newItem = `<li class="cart-card divider">
-  <a href="#" class="cart-card__image">
-    <img
-      src="${item.Images.PrimarySmall}"
-      alt="${item.Name}"
-    />
-  </a>
-  <a href="#">
-    <h2 class="card__name">${item.Name}</h2>
-  </a>
-  <p class="cart-card__color">${item.Colors[0].ColorName}</p>
-  <p class="cart-card__price">
-    <span class="valueDesc">Price: </span>
-    $${item.FinalPrice}
-  </p>
-  <p class="cart-card__quantity">
-    <span class="valueDesc">Quantity: </span> 
-    ${item.Quantity}
-  </p>
-  <p class="cart-card__itemTotal">
-    <span class="valueDesc">Item Subtotal: </span>
-    $${item.FinalPrice * item.Quantity}
-  </p>
-</li>`;
+    <a href="#" class="cart-card__image">
+      <img
+        src="${item.Images.PrimarySmall}"
+        alt="${item.Name}"
+        loading="lazy"
+      />
+    </a>
+    <a class="card__name" href="#">
+      <h3>${item.Name}</h3>
+    </a>
+    <p class="cart-card__color">${item.Colors[0].ColorName}</p>
+    <p class="cart-card__price">
+      <span class="valueDesc">Price:</span>
+      ${formattedPrice}
+    </p>
+    <p class="cart-card__quantity">
+      <span class="valueDesc">Quantity:</span>
+      ${item.Quantity}
+    </p>
+    <p class="cart-card__itemTotal">
+      <span class="valueDesc">Subtotal:</span>
+      ${formattedSubtotal}
+    </p>
+  </li>`;
 
   return newItem;
 }

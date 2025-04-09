@@ -13,7 +13,8 @@ function productCardTemplate(product) {
   <a href="/product_pages/index.html?product=${product.Id}">
     <img
       src="${product.Images.PrimarySmall}"
-      alt="${product.Name}"
+      alt="${product.Name}" 
+      loading="lazy"
     />
     <h3 class="card__brand">${product.Brand.Name}</h3>
     <h2 class="card__name">${product.NameWithoutBrand}</h2>
@@ -87,9 +88,9 @@ function renderList(selector, products) {
 
 function breadCrumbTemplate(category, productCount) {
   return async function () {
-    const template = `<div className="breadcrumb">
+    const template = `<div class="breadcrumb">
   <a href="/">${category}</a>
-  <span className="separator">-></span>
+  <span class="separator">-></span>
   <span>(${productCount} items)</span>
 </div>`;
     return template;
