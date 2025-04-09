@@ -1,5 +1,5 @@
 
-import { formDataToJSON, getLocalStorage, qs, setLocalStorage } from "./utils.mjs";
+import { formDataToJSON, getLocalStorage, qs, setLocalStorage, formatCurrency } from "./utils.mjs";
 import { checkout } from "./externalServices.mjs";
 
 // Creates simplified list of items with relevant details
@@ -49,7 +49,7 @@ const checkoutProcess = {
 
     const amounts = this.list.map((item) => item.FinalPrice * item.Quantity); // Calculate item subtotals
     this.itemTotal = amounts.reduce((sum, item) => sum + item, 0); // Store total item cost in checkoutProcess
-    summaryElement.innerText = this.itemTotal; // Update total cost in UI
+    summaryElement.innerText = formatCurrency(this.itemTotal); // Update total cost in UI
   },
 
   calculateOrdertotal: function () {
@@ -69,9 +69,9 @@ const checkoutProcess = {
     const shipping = qs(this.outputSelector + " #shipping");
     const tax = qs(this.outputSelector + " #tax");
     const orderTotal = qs(this.outputSelector + " #orderTotal");
-    shipping.innerText = "$" + this.shipping;
-    tax.innerText = "$" + this.tax;
-    orderTotal.innerText = "$" + this.orderTotal;
+    shipping.innerText = formatCurrency(this.shipping);
+    tax.innerText = formatCurrency(this.tax);
+    orderTotal.innerText = formatCurrency(this.orderTotal);
   },
 
   // Handles the checkout process and sends order data

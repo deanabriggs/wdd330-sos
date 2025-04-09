@@ -26,6 +26,13 @@ export function setClick(selector, callback) {
   qs(selector).addEventListener("click", callback);
 }
 
+export function formatCurrency(amount) {
+  return new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  }).format(amount);
+}
+
 export function getParam(param = "product") {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);

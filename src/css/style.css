@@ -25,6 +25,21 @@ body {
   color: var(--dark-grey);
 }
 
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+} 
+
 img {
   max-width: 100%;
 }
@@ -389,7 +404,7 @@ button {
 
 footer {
   font-size: var(--small-font);
-  padding: 1em;
+  padding: 1em
 }
 
 /* Add superscript number to cart if not 0 items*/
