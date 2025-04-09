@@ -1,5 +1,5 @@
 
-import { formDataToJSON, getLocalStorage, qs, setLocalStorage, formatCurrency } from "./utils.mjs";
+import { formDataToJSON, getLocalStorage, qs, setLocalStorage, formatCurrency, alertMessage } from "./utils.mjs";
 import { checkout } from "./externalServices.mjs";
 
 // Creates simplified list of items with relevant details
@@ -35,7 +35,7 @@ const checkoutProcess = {
     this.outputSelector = outputSelector; // Set the output selector for updating the UI
     this.list = getLocalStorage(key); // Retrieve stored cart data from local storage
     this.calculateItemSummary(); // Calculate item totals and update the UI
-    this.calculateOrdertotal(); // Calculate shipping, tax, and final order total
+    this.calculateOrderTotal(); // Calculate shipping, tax, and final order total
   },
 
   // Calculates the item subtotal and updates UI
@@ -52,7 +52,7 @@ const checkoutProcess = {
     summaryElement.innerText = formatCurrency(this.itemTotal); // Update total cost in UI
   },
 
-  calculateOrdertotal: function () {
+  calculateOrderTotal: function () {
     this.shipping = 10 + (this.itemQuantity - 1) * 2; // Base shipping cost $10 + $2 per additional item
     this.tax = (this.itemTotal * 0.06).toFixed(2); // Calculate tax @ 6% of item total
     this.orderTotal = (
@@ -91,8 +91,8 @@ const checkoutProcess = {
       setLocalStorage("so-cart", []);
       location.assign("/checkout/success.html");
     } catch (err) {
+
       // catch any errors
-      
       removeAllAlerts();
       for(let message in err.message) {
         alertMessage(err.message[message]);
@@ -101,5 +101,12 @@ const checkoutProcess = {
     }
   },
 };
+// This function clears all alert messages
+function removeAllAlerts() {
+  const alerts = document.querySelectorAll('.alert');  // Adjust the selector to match your alert elements
+  alerts.forEach(alert => {
+    alert.remove();  // Remove each alert from the DOM
+  });
+}
 
 export default checkoutProcess;

@@ -28,7 +28,7 @@
                 name="fname"
                 id="fname"
                 required
-                pattern="^(?=(.*[A-Za-z])+)[A-Za-z' .-]*$"
+                pattern="^(?=(.*[A-Za-z])+)[A-Za-z'\s\.\-]*$"
                 title="Must have at least 1-letter."
               />
               <label for="lname">Last Name</label>
@@ -37,7 +37,7 @@
                 name="lname"
                 id="lname"
                 required
-                pattern="^(?=(.*[A-Za-z]){2,})[A-Za-z' .-]*$"
+                pattern="^(?=(.*[A-Za-z]){2,})[A-Za-z'\s\.\-]*$"
                 title="Must have at least 2-letters."
               />
             </div>
@@ -48,7 +48,7 @@
                 name="street"
                 id="street"
                 required
-                pattern="^\d+[\sA-Za-z\.\-#]+$"
+                pattern="^\d+[\sA-Za-z\.\-\#]+$"
                 title="Must have at least 1-number, 3-letters, a seperating space, and can contain these special characters [.-#']."
               />
               <label for="city">City</label>
@@ -57,7 +57,7 @@
                 name="city"
                 id="city"
                 required
-                pattern="^(?=(.*[A-Za-z]){2,})[A-Za-z' .-]*$"
+                pattern="^(?=(.*[A-Za-z]){2,})[A-Za-z'\s\.\-]*$"
                 title="Must have at least 2-letters."
               />
               <label for="state">State</label>
@@ -66,7 +66,7 @@
                 name="state"
                 id="state"
                 required
-                pattern="^(?=(.*[A-Za-z]){2,})[A-Za-z]*$"
+                pattern="^(?=(.*[A-Za-z]){2,})[A-Za-z\-\s]*$"
                 title="Must have at least 2-letters, no special characters allowed."
               />
               <label for="zip">Zip</label>
@@ -87,7 +87,7 @@
               name="cardNumber"
               id="cardNumber"
               required
-              pattern="^(?:\d{4}[- ]?){3}\d{4}$"
+              pattern="^\d{4}(-|\s)?\d{4}(-|\s)?\d{4}(-|\s)?\d{4}$"
               title="Must be a 16-digit card number (spaces or - ok)"
             />
             <label for="expiration">Expiration</label>
@@ -131,7 +131,7 @@
             </ul>
           </fieldset>
 
-          <button id="checkoutSubmit" type="submit"><a href="success.html">Place Order</a></button>
+          <button id="checkoutSubmit" type="submit">Place Order</a></button>
         </form>
       </section>
     </main>
