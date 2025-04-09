@@ -9,14 +9,8 @@ document
   .querySelector("#zip")
   .addEventListener(
     "blur",
-    checkoutProcess.calculateOrdertotal.bind(checkoutProcess)
+    checkoutProcess.calculateOrderTotal.bind(checkoutProcess)
   );
-
-async function processOrder(req, res) {
-  if (submitResponse) {
-    location.replace("/success");
-  }
-}
 
 document.forms.checkout.addEventListener("submit", (e) => {
   e.preventDefault();
