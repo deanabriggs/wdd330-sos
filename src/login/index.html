@@ -9,21 +9,24 @@
     <script src="../js/login.js" type="module"></script>
   </head>
   <body>
-    <header class="divider" id="mainHeader"></header>
-    <main class="divider">
-      <div class="container">
-        <h2>User Login</h2>
-        <form id="loginForm" name="loginForm">
-          <label for="email">Email:</label>
-          <input type="text" id="email" name="email" required />
+    <div class="wrapper">
+      <header class="divider" id="mainHeader"></header>
+      <main class="divider">
+        <div class="container">
+          <h2>User Login</h2>
 
-          <label for="password">Password:</label>
-          <input type="password" id="password" name="password" required />
-
-          <button id="loginButton" type="submit">Login</button>
-        </form>
-      </div>
-    </main>
-    <footer id="mainFooter"></footer>
+          <form class="login-form" id="loginForm" name="loginForm">
+            <fieldset>
+              <label for="email">Email:</label>
+              <input type="text" id="email" name="email" pattern="^\S+@\S+\.\S+$" title="Enter a valid email address" required />
+              <label for="password">Password:</label>
+              <input type="password" id="password" name="password" required />
+            </fieldset>
+            <button id="loginButton" type="submit">Login</button>
+          </form>
+        </div>
+      </main>
+      <footer id="mainFooter"></footer>
+    </div>
   </body>
 </html>

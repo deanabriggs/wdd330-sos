@@ -36,6 +36,7 @@ export async function showRegisterModal() {
   };
   registerBtn.onclick = () => {
     modalElement.classList.add("hide");
+    window.location.href = "/login/";
   };
   window.onclick = (event) => {
     if (event.target === modal) {
